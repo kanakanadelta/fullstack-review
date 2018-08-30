@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/fetcher');
+mongoose.Promise = global.Promise;
 
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
@@ -35,9 +36,17 @@ let save = (err, repoData) => {
 
       //save in DB
 
+      var repoToSave = new Repo(newRepo)
+
+      repoToSave.save((err, repoToSave) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log( repoToSave + ' saved in DB(mongo)!')
+        }
+      })
     })
 
-    console.log('saved in DB(mongo)!')
   }
   // This function should save a repo or repos to
   // the MongoDB

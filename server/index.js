@@ -24,8 +24,6 @@ app.post('/repos', function (req, res) {
       // console.log(err);
     } else {
       Save.save(err, repoData)
-      // res.send('...POST request');
-      // console.log('THIS IS REQ.BODY',req.body)
     }
   })
   res.end('res end in POST')
